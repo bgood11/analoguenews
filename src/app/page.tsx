@@ -3,16 +3,26 @@ import { NewsCard } from "@/components/NewsCard";
 import { Sidebar } from "@/components/Sidebar";
 import { ContentFilter } from "@/components/ContentFilter";
 import { DarkNewsletterCTA } from "@/components/DarkNewsletterCTA";
+import { RevealWrapper } from "@/components/RevealWrapper";
+import { TodayInHistory } from "@/components/TodayInHistory";
 import Link from "next/link";
 
-export default function HomePage() {
-  const sortedNews = [...newsItems].sort(
-    (a, b) =>
-      new Date(b.publishedDate).getTime() -
-      new Date(a.publishedDate).getTime()
-  );
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ type?: string }>;
+}) {
+  const { type } = await searchParams;
 
-  const featured = sortedNews.find((n) => n.featured);
+  const sortedNews = [...newsItems]
+    .sort(
+      (a, b) =>
+        new Date(b.publishedDate).getTime() -
+        new Date(a.publishedDate).getTime()
+    )
+    .filter((n) => !type || n.contentType === type);
+
+  const featured = sortedNews.find((n) => n.featured) || sortedNews[0];
   const secondary = sortedNews.filter((n) => n !== featured).slice(0, 3);
   const river = sortedNews.filter(
     (n) => n !== featured && !secondary.includes(n)
@@ -131,11 +141,16 @@ export default function HomePage() {
         <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-coral via-amber to-coral opacity-80" />
       </section>
 
+      {/* Today in Film History */}
+      <TodayInHistory />
+
       {/* Secondary Stories */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {secondary.map((item) => (
-            <SecondaryCard key={item.id} item={item} />
+          {secondary.map((item, i) => (
+            <RevealWrapper key={item.id} delay={i * 100}>
+              <SecondaryCard item={item} />
+            </RevealWrapper>
           ))}
         </div>
       </section>

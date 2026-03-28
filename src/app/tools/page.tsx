@@ -94,6 +94,76 @@ export default function ToolsPage() {
               </div>
             </div>
           </Link>
+          <Link
+            href="/tools/film-comparison"
+            className="group block bg-white border border-warm-border rounded-lg overflow-hidden hover:shadow-lg hover:shadow-warm-black/5 hover:-translate-y-0.5 transition-all"
+          >
+            <div className="h-1.5 bg-gradient-to-r from-coral via-amber to-coral" />
+            <div className="p-6 flex items-start gap-5">
+              <div className="w-12 h-12 bg-warm-bg-alt rounded-sm flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  className="text-warm-gray"
+                >
+                  <rect x="2" y="3" width="8" height="18" rx="1" />
+                  <rect x="14" y="3" width="8" height="18" rx="1" />
+                  <path d="M10 8h4M10 12h4M10 16h4" />
+                </svg>
+              </div>
+              <div>
+                <h2 className="font-display text-lg font-semibold text-warm-black group-hover:text-coral transition-colors mb-1">
+                  Film Stock Comparison
+                </h2>
+                <p className="text-sm text-warm-gray leading-relaxed">
+                  Compare two film stocks side-by-side — specs, character, and
+                  reciprocity failure curves on a log-scale chart. Shareable via URL.
+                </p>
+                <span className="inline-block mt-2 text-[10px] font-semibold text-coral bg-coral-light px-2 py-0.5 rounded-sm">
+                  NEW
+                </span>
+              </div>
+            </div>
+          </Link>
+
+          <Link
+            href="/tools/film-recommender"
+            className="group block bg-white border border-warm-border rounded-lg overflow-hidden hover:shadow-lg hover:shadow-warm-black/5 hover:-translate-y-0.5 transition-all"
+          >
+            <div className="h-1.5 bg-gradient-to-r from-coral-muted to-coral" />
+            <div className="p-6 flex items-start gap-5">
+              <div className="w-12 h-12 bg-coral-light rounded-sm flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  className="text-coral"
+                >
+                  <path d="M9 11l3 3L22 4" />
+                  <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+                </svg>
+              </div>
+              <div>
+                <h2 className="font-display text-lg font-semibold text-warm-black group-hover:text-coral transition-colors mb-1">
+                  What Film Should I Shoot?
+                </h2>
+                <p className="text-sm text-warm-gray leading-relaxed">
+                  Answer 4 quick questions about your subject, lighting, and
+                  preferences — get personalised film stock recommendations.
+                </p>
+                <span className="inline-block mt-2 text-[10px] font-semibold text-coral bg-coral-light px-2 py-0.5 rounded-sm">
+                  NEW
+                </span>
+              </div>
+            </div>
+          </Link>
         </div>
       </div>
     </>

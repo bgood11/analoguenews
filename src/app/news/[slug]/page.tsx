@@ -3,6 +3,7 @@ import Link from "next/link";
 import { newsItems, getNewsItem } from "@/data/news";
 import { renderMarkdown } from "@/lib/markdown";
 import { ReadingProgress } from "@/components/ReadingProgress";
+import { JsonLd } from "@/components/JsonLd";
 import type { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -58,6 +59,21 @@ export default async function NewsArticlePage({
 
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "NewsArticle",
+          headline: item.title,
+          description: item.summary,
+          datePublished: item.publishedDate,
+          publisher: {
+            "@type": "Organization",
+            name: "analoguenews",
+            url: "https://analoguenews.vercel.app",
+          },
+          mainEntityOfPage: `https://analoguenews.vercel.app/news/${item.slug}`,
+        }}
+      />
       <ReadingProgress />
       {/* Dark hero */}
       <section className="bg-warm-black text-white relative overflow-hidden">

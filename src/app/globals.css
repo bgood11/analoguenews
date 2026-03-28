@@ -116,6 +116,17 @@ a, button {
   line-height: 1.6;
 }
 
+/* Scroll reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal[data-visible] {
+  opacity: 1;
+  transform: none;
+}
+
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;

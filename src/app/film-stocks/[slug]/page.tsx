@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { filmStocks, getFilmStock } from "@/data/film-stocks";
+import { JsonLd } from "@/components/JsonLd";
 import type { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -58,6 +59,16 @@ export default async function FilmStockPage({
 
   return (
     <>
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "Product",
+        name: `${stock.manufacturer} ${stock.name}`,
+        brand: { "@type": "Brand", name: stock.manufacturer },
+        description: stock.description,
+        category: "Photographic Film",
+      }}
+    />
     {/* Hero bar */}
     <section className={`relative overflow-hidden ${stock.type === "bw_negative" ? "bg-warm-black" : "bg-warm-black"}`}>
       <div className="absolute inset-0 bg-gradient-to-r from-warm-black to-coral/10" />
