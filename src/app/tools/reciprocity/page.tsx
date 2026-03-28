@@ -228,7 +228,7 @@ export default function ReciprocityPage() {
       )}
 
       {/* Explanation */}
-      <section className="bg-blue-50 border border-blue-200 rounded-xl p-5">
+      <section className="bg-warm-bg-alt border-l-4 border-warm-gray rounded-sm p-5">
         <h2 className="text-sm font-semibold text-warm-black mb-2">
           What is reciprocity failure?
         </h2>

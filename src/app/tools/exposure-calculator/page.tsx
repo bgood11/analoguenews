@@ -202,7 +202,7 @@ export default function ExposureCalculatorPage() {
       </section>
 
       {/* Sunny 16 Rule */}
-      <section className="bg-amber-50 border border-amber-200 rounded-xl p-5">
+      <section className="bg-amber-light border-l-4 border-amber rounded-sm p-5">
         <h2 className="text-sm font-semibold text-warm-black mb-2">
           The Sunny 16 Rule
         </h2>

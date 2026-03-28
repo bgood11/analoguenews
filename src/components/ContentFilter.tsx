@@ -31,10 +31,10 @@ function FilterButtons() {
             }
             router.push(`?${params.toString()}`, { scroll: false });
           }}
-          className={`px-3 py-1.5 text-sm rounded-full border transition-colors ${
+          className={`px-3 py-1.5 text-sm rounded-sm border font-medium transition-all active:scale-95 ${
             active === f.value
-              ? "bg-warm-black text-white border-warm-black"
-              : "bg-white text-warm-gray border-warm-border hover:border-warm-gray-light"
+              ? "bg-coral text-white border-coral shadow-sm shadow-coral/20"
+              : "bg-white text-warm-gray border-warm-border hover:border-coral/30 hover:text-warm-black"
           }`}
         >
           {f.label}

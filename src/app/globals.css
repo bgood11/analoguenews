@@ -4,29 +4,82 @@
   --color-warm-black: #1A1410;
   --color-warm-bg: #FAFAF8;
   --color-warm-bg-alt: #F5F3F0;
+  --color-warm-bg-dark: #EDE9E4;
   --color-coral: #E8634A;
   --color-coral-dark: #D4522A;
   --color-coral-light: #FFF0ED;
+  --color-coral-muted: #F2B5A8;
   --color-amber: #E89B3A;
+  --color-amber-light: #FFF5E6;
   --color-warm-gray: #8A8278;
   --color-warm-gray-light: #C4BEB6;
   --color-warm-border: #E8E4DF;
   --color-warm-border-light: #F0ECE8;
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --font-sans: var(--font-source-sans-3), "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-lora), "Lora", Georgia, "Times New Roman", serif;
+  --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Film grain texture overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
 }
 
 body {
   color: var(--color-warm-black);
   background: var(--color-warm-bg);
   font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background-color: var(--color-coral-light);
-  color: var(--color-warm-black);
+  background-color: var(--color-coral);
+  color: white;
+}
+
+/* Editorial typography */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+/* Smooth transitions everywhere */
+a, button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus-visible for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-coral);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-warm-bg-alt);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-warm-gray-light);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-warm-gray);
 }

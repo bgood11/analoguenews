@@ -18,45 +18,67 @@ export default function GuidesPage() {
     );
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
-      <h1 className="text-2xl font-bold text-warm-black mb-1">Guides</h1>
-      <p className="text-sm text-warm-gray mb-8">
-        Practical, no-nonsense guides for film photographers at every level.
-      </p>
+    <>
+      <section className="bg-warm-black text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-warm-black via-warm-black to-coral/10" />
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+          <p className="text-coral font-mono text-xs uppercase tracking-widest mb-4">
+            Learn
+          </p>
+          <h1 className="font-display text-3xl md:text-4xl font-semibold italic mb-3">
+            Guides
+          </h1>
+          <p className="text-white/60 max-w-xl">
+            Practical, no-nonsense guides for film photographers at every level.
+            No gatekeeping — just clear, useful information.
+          </p>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-coral via-amber to-coral opacity-60" />
+      </section>
 
-      <div className="grid gap-6">
-        {guides.map((guide) => (
-          <Link
-            key={guide.id}
-            href={`/guides/${guide.slug}`}
-            className="group block bg-white border border-warm-border rounded-xl p-6 hover:border-coral/30 transition-colors"
-          >
-            <div className="flex items-center gap-2 mb-2">
-              {guide.categories.map((cat) => (
-                <span
-                  key={cat}
-                  className="text-xs font-medium px-2 py-0.5 rounded-full bg-green-50 text-green-700"
-                >
-                  {cat}
-                </span>
-              ))}
-              <time className="text-xs text-warm-gray font-mono">
-                {new Date(guide.publishedDate).toLocaleDateString("en-GB", {
-                  day: "numeric",
-                  month: "short",
-                  year: "numeric",
-                })}
-              </time>
-            </div>
-            <h2 className="text-lg font-semibold text-warm-black group-hover:text-coral transition-colors mb-1">
-              {guide.title}
-            </h2>
-            <p className="text-sm text-warm-gray leading-relaxed">
-              {guide.summary}
-            </p>
-          </Link>
-        ))}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10">
+        <div className="grid gap-5">
+          {guides.map((guide, i) => (
+            <Link
+              key={guide.id}
+              href={`/guides/${guide.slug}`}
+              className="group block bg-white border border-warm-border rounded-lg overflow-hidden hover:shadow-lg hover:shadow-warm-black/5 hover:-translate-y-0.5 transition-all"
+            >
+              <div className="h-1 bg-gradient-to-r from-coral/60 to-coral-muted/60" />
+              <div className="p-6">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-coral">
+                    Guide {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-warm-gray-light">&middot;</span>
+                  {guide.categories.map((cat) => (
+                    <span
+                      key={cat}
+                      className="text-[10px] font-medium text-warm-gray"
+                    >
+                      {cat}
+                    </span>
+                  ))}
+                  <span className="text-warm-gray-light">&middot;</span>
+                  <time className="text-[10px] text-warm-gray-light font-mono">
+                    {new Date(guide.publishedDate).toLocaleDateString("en-GB", {
+                      day: "numeric",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </time>
+                </div>
+                <h2 className="font-display text-lg font-semibold text-warm-black group-hover:text-coral transition-colors mb-1.5">
+                  {guide.title}
+                </h2>
+                <p className="text-sm text-warm-gray leading-relaxed">
+                  {guide.summary}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

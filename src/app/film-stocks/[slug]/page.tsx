@@ -57,26 +57,31 @@ export default async function FilmStockPage({
     .slice(0, 4);
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
-      <Link
-        href="/film-stocks"
-        className="text-sm text-warm-gray hover:text-coral transition-colors mb-6 inline-block"
-      >
-        &larr; All film stocks
-      </Link>
-
-      <div className="mb-2 flex items-center gap-2">
-        <span className="text-sm text-warm-gray">{stock.manufacturer}</span>
-        <span
-          className={`text-xs font-medium px-2 py-0.5 rounded-full border ${status.color}`}
+    <>
+    {/* Hero bar */}
+    <section className={`relative overflow-hidden ${stock.type === "bw_negative" ? "bg-warm-black" : "bg-warm-black"}`}>
+      <div className="absolute inset-0 bg-gradient-to-r from-warm-black to-coral/10" />
+      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 py-10">
+        <Link
+          href="/film-stocks"
+          className="text-sm text-white/40 hover:text-coral transition-colors mb-4 inline-block"
         >
-          {status.label}
-        </span>
+          &larr; All film stocks
+        </Link>
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-white/50 text-sm">{stock.manufacturer}</span>
+          <span className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-sm ${status.color}`}>
+            {status.label}
+          </span>
+        </div>
+        <h1 className="font-display text-3xl md:text-4xl font-semibold text-white italic">
+          {stock.name}
+        </h1>
       </div>
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-coral via-amber to-coral opacity-60" />
+    </section>
 
-      <h1 className="text-3xl font-bold text-warm-black mb-6">
-        {stock.name}
-      </h1>
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
 
       {/* Specs Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
@@ -190,7 +195,7 @@ export default async function FilmStockPage({
       {/* Related Stocks */}
       {relatedStocks.length > 0 && (
         <section className="mt-10 pt-8 border-t border-warm-border">
-          <h2 className="text-lg font-bold text-warm-black mb-4">
+          <h2 className="font-display text-lg font-semibold text-warm-black mb-4">
             Similar Stocks
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -215,5 +220,6 @@ export default async function FilmStockPage({
         </section>
       )}
     </div>
+    </>
   );
 }

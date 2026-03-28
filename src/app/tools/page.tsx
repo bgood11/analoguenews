@@ -7,55 +7,95 @@ export const metadata: Metadata = {
     "Free tools for film photographers — exposure calculator and reciprocity failure helper.",
 };
 
-const tools = [
-  {
-    title: "Exposure Calculator",
-    description:
-      "Calculate aperture, shutter speed, and ISO combinations for any lighting condition. Includes presets for common scenarios.",
-    href: "/tools/exposure-calculator",
-    icon: "☀",
-    color: "bg-amber-50 border-amber-200",
-  },
-  {
-    title: "Reciprocity Failure Helper",
-    description:
-      "Select your film stock and input your metered exposure — get the adjusted time for long exposures. Covers 15+ stocks with manufacturer and community data.",
-    href: "/tools/reciprocity",
-    icon: "⏱",
-    color: "bg-blue-50 border-blue-200",
-  },
-];
-
 export default function ToolsPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
-      <h1 className="text-2xl font-bold text-warm-black mb-1">Tools</h1>
-      <p className="text-sm text-warm-gray mb-8">
-        Free, practical tools for film photographers. No account needed, works
-        on mobile.
-      </p>
+    <>
+      <section className="bg-warm-black text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-warm-black via-warm-black to-amber/10" />
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+          <p className="text-coral font-mono text-xs uppercase tracking-widest mb-4">
+            Practical Tools
+          </p>
+          <h1 className="font-display text-3xl md:text-4xl font-semibold italic mb-3">
+            Tools for Film Photographers
+          </h1>
+          <p className="text-white/60 max-w-xl">
+            Free, practical, no account needed. Works on mobile — bookmark them
+            for the field.
+          </p>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber via-coral to-amber opacity-60" />
+      </section>
 
-      <div className="grid gap-4">
-        {tools.map((tool) => (
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
+        <div className="grid gap-5">
           <Link
-            key={tool.href}
-            href={tool.href}
-            className={`group block border rounded-xl p-6 hover:border-coral/30 transition-colors ${tool.color}`}
+            href="/tools/exposure-calculator"
+            className="group block bg-white border border-warm-border rounded-lg overflow-hidden hover:shadow-lg hover:shadow-warm-black/5 hover:-translate-y-0.5 transition-all"
           >
-            <div className="flex items-start gap-4">
-              <span className="text-3xl">{tool.icon}</span>
+            <div className="h-1.5 bg-gradient-to-r from-amber to-coral" />
+            <div className="p-6 flex items-start gap-5">
+              <div className="w-12 h-12 bg-amber-light rounded-sm flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  className="text-amber"
+                >
+                  <circle cx="12" cy="12" r="5" />
+                  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                </svg>
+              </div>
               <div>
-                <h2 className="text-lg font-semibold text-warm-black group-hover:text-coral transition-colors mb-1">
-                  {tool.title}
+                <h2 className="font-display text-lg font-semibold text-warm-black group-hover:text-coral transition-colors mb-1">
+                  Exposure Calculator
                 </h2>
                 <p className="text-sm text-warm-gray leading-relaxed">
-                  {tool.description}
+                  Select lighting conditions, film speed, and see all
+                  aperture/shutter combinations. 11 presets from bright sun to
+                  moonlight, with practical notes for each combination.
                 </p>
               </div>
             </div>
           </Link>
-        ))}
+
+          <Link
+            href="/tools/reciprocity"
+            className="group block bg-white border border-warm-border rounded-lg overflow-hidden hover:shadow-lg hover:shadow-warm-black/5 hover:-translate-y-0.5 transition-all"
+          >
+            <div className="h-1.5 bg-gradient-to-r from-coral to-coral-muted" />
+            <div className="p-6 flex items-start gap-5">
+              <div className="w-12 h-12 bg-coral-light rounded-sm flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  className="text-coral"
+                >
+                  <circle cx="12" cy="13" r="8" />
+                  <path d="M12 9v4l2 2M5 3l2 2M19 3l-2 2M12 3v2" />
+                </svg>
+              </div>
+              <div>
+                <h2 className="font-display text-lg font-semibold text-warm-black group-hover:text-coral transition-colors mb-1">
+                  Reciprocity Failure Helper
+                </h2>
+                <p className="text-sm text-warm-gray leading-relaxed">
+                  Select your film stock and input your metered exposure time —
+                  get the adjusted time for long exposures. Covers 15+ stocks
+                  with manufacturer and community data.
+                </p>
+              </div>
+            </div>
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
