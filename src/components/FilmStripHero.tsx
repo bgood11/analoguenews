@@ -88,7 +88,7 @@ export function FilmStripHero({
   return (
     <section className="bg-warm-black text-white relative overflow-hidden">
       {/* Animated film strip background */}
-      <div className="absolute inset-0 opacity-[0.07]" aria-hidden="true">
+      <div className="absolute inset-0 opacity-[0.18]" aria-hidden="true">
         <div
           className="flex gap-1 h-full animate-filmstrip"
           style={{
@@ -132,7 +132,7 @@ export function FilmStripHero({
       </div>
 
       {/* Gradient overlay for readability */}
-      <div className="absolute inset-0 bg-gradient-to-br from-warm-black/95 via-warm-black/90 to-warm-black/80" />
+      <div className="absolute inset-0 bg-gradient-to-br from-warm-black/90 via-warm-black/80 to-warm-black/65" />
 
       {/* Content */}
       <div className="relative">{children}</div>
