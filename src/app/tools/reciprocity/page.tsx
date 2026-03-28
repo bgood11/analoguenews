@@ -87,21 +87,36 @@ export default function ReciprocityPage() {
   }, [selectedStock, measuredSeconds]);
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
-      <Link
-        href="/tools"
-        className="text-sm text-warm-gray hover:text-coral transition-colors mb-6 inline-block"
-      >
-        &larr; All tools
-      </Link>
+    <>
+    <section className="bg-warm-black text-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-warm-black via-warm-black to-coral/15" />
+      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 py-10">
+        <Link
+          href="/tools"
+          className="text-sm text-white/40 hover:text-coral transition-colors mb-4 inline-block"
+        >
+          &larr; All tools
+        </Link>
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-10 h-10 bg-coral/20 rounded-sm flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-coral">
+              <circle cx="12" cy="13" r="8" />
+              <path d="M12 9v4l2 2M5 3l2 2M19 3l-2 2M12 3v2" />
+            </svg>
+          </div>
+          <h1 className="font-display text-2xl md:text-3xl font-semibold italic">
+            Reciprocity Failure Helper
+          </h1>
+        </div>
+        <p className="text-white/50 text-sm max-w-lg">
+          Film becomes less sensitive during long exposures. Select your film and
+          metered time to get the adjusted exposure.
+        </p>
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-coral via-amber to-coral opacity-60" />
+    </section>
 
-      <h1 className="font-display text-2xl font-semibold text-warm-black mb-1">
-        Reciprocity Failure Helper
-      </h1>
-      <p className="text-sm text-warm-gray mb-8">
-        Film becomes less sensitive during long exposures. Select your film and
-        metered time to get the adjusted exposure.
-      </p>
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
 
       {/* Film Selection */}
       <section className="mb-6">
@@ -242,5 +257,6 @@ export default function ReciprocityPage() {
         </p>
       </section>
     </div>
+    </>
   );
 }

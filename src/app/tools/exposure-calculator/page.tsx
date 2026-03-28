@@ -92,21 +92,36 @@ export default function ExposureCalculatorPage() {
   }, [evAdjusted]);
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
-      <Link
-        href="/tools"
-        className="text-sm text-warm-gray hover:text-coral transition-colors mb-6 inline-block"
-      >
-        &larr; All tools
-      </Link>
+    <>
+    <section className="bg-warm-black text-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-warm-black via-warm-black to-amber/15" />
+      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 py-10">
+        <Link
+          href="/tools"
+          className="text-sm text-white/40 hover:text-coral transition-colors mb-4 inline-block"
+        >
+          &larr; All tools
+        </Link>
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-10 h-10 bg-amber/20 rounded-sm flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-amber">
+              <circle cx="12" cy="12" r="5" />
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            </svg>
+          </div>
+          <h1 className="font-display text-2xl md:text-3xl font-semibold italic">
+            Exposure Calculator
+          </h1>
+        </div>
+        <p className="text-white/50 text-sm max-w-lg">
+          Select lighting conditions, film speed, and see all aperture/shutter
+          combinations with practical notes.
+        </p>
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber via-coral to-amber opacity-60" />
+    </section>
 
-      <h1 className="font-display text-2xl font-semibold text-warm-black mb-1">
-        Exposure Calculator
-      </h1>
-      <p className="text-sm text-warm-gray mb-8">
-        Select your lighting conditions, film speed, and aperture to calculate
-        the correct shutter speed.
-      </p>
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
 
       {/* Lighting Conditions */}
       <section className="mb-8">
@@ -215,5 +230,6 @@ export default function ExposureCalculatorPage() {
         </p>
       </section>
     </div>
+    </>
   );
 }
