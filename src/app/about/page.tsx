@@ -65,7 +65,7 @@ export default function AboutPage() {
               ].map((item) => (
                 <div
                   key={item.title}
-                  className="border-l-3 border-coral/30 pl-4 py-2"
+                  className="border-l-4 border-coral/30 pl-4 py-2"
                 >
                   <h3 className="font-semibold text-sm text-warm-black">
                     {item.title}

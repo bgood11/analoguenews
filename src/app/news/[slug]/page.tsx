@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { newsItems, getNewsItem } from "@/data/news";
 import { renderMarkdown } from "@/lib/markdown";
+import { ReadingProgress } from "@/components/ReadingProgress";
 import type { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -42,6 +43,7 @@ export default async function NewsArticlePage({
 
   return (
     <>
+      <ReadingProgress />
       {/* Dark hero */}
       <section className="bg-warm-black text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-warm-black via-warm-black to-coral/10" />
@@ -92,7 +94,7 @@ export default async function NewsArticlePage({
 
       {/* Article body */}
       <article className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
-        <p className="text-lg text-warm-gray leading-relaxed mb-8 pl-5 border-l-3 border-coral italic">
+        <p className="text-lg text-warm-gray leading-relaxed mb-8 pl-5 border-l-4 border-coral italic">
           {item.summary}
         </p>
 

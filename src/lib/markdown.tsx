@@ -8,7 +8,7 @@ export function renderMarkdown(text: string): React.ReactNode[] {
   let tableHeader: string[] = [];
   let listItems: React.ReactNode[] = [];
   let inList = false;
-  let isFirstParagraph = true;
+  let firstParagraphSeen = false;
 
   function flushTable() {
     if (tableRows.length > 0) {
@@ -141,7 +141,6 @@ export function renderMarkdown(text: string): React.ReactNode[] {
     // Headings
     if (trimmed.startsWith("## ")) {
       if (inList) flushList();
-      isFirstParagraph = false;
       elements.push(
         <h2
           key={`h2-${i}`}
@@ -154,7 +153,6 @@ export function renderMarkdown(text: string): React.ReactNode[] {
     }
     if (trimmed.startsWith("### ")) {
       if (inList) flushList();
-      isFirstParagraph = false;
       elements.push(
         <h3
           key={`h3-${i}`}
@@ -169,7 +167,7 @@ export function renderMarkdown(text: string): React.ReactNode[] {
     // List item
     if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
       inList = true;
-      isFirstParagraph = false;
+      firstParagraphSeen = true;
       listItems.push(
         <li key={`li-${i}`} className="flex gap-2 text-warm-black leading-relaxed">
           <span className="text-coral mt-0.5 flex-shrink-0">
@@ -186,7 +184,7 @@ export function renderMarkdown(text: string): React.ReactNode[] {
     // Numbered list
     if (/^\d+\.\s/.test(trimmed)) {
       if (inList) flushList();
-      isFirstParagraph = false;
+      firstParagraphSeen = true;
       const num = trimmed.match(/^(\d+)\./)?.[1];
       elements.push(
         <p key={`p-${i}`} className="flex gap-3 text-warm-black leading-relaxed my-2">
@@ -202,11 +200,10 @@ export function renderMarkdown(text: string): React.ReactNode[] {
     // Blockquote / italic line
     if (trimmed.startsWith("*") && trimmed.endsWith("*") && !trimmed.startsWith("**")) {
       if (inList) flushList();
-      isFirstParagraph = false;
       elements.push(
         <blockquote
           key={`bq-${i}`}
-          className="my-6 pl-5 border-l-3 border-coral italic font-display text-lg text-warm-gray leading-relaxed"
+          className="my-6 pl-5 border-l-4 border-coral italic font-display text-lg text-warm-gray leading-relaxed"
         >
           {trimmed.slice(1, -1)}
         </blockquote>
@@ -217,12 +214,10 @@ export function renderMarkdown(text: string): React.ReactNode[] {
     // Regular paragraph
     if (inList) flushList();
 
-    const isDropCap = isFirstParagraph && elements.length === 0;
-    isFirstParagraph = false;
+    const isDropCap = !firstParagraphSeen;
+    firstParagraphSeen = true;
 
     if (isDropCap && trimmed.length > 20) {
-      const firstChar = trimmed[0];
-      const rest = trimmed.slice(1);
       elements.push(
         <p key={`p-${i}`} className="text-warm-black leading-relaxed my-4 first-letter:float-left first-letter:font-display first-letter:text-5xl first-letter:font-semibold first-letter:text-coral first-letter:mr-2 first-letter:mt-1 first-letter:leading-none">
           {formatInline(trimmed)}

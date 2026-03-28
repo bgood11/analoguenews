@@ -33,7 +33,7 @@ export function NewsCard({ item }: { item: NewsItem }) {
 
   return (
     <article
-      className={`group border-l-3 pl-5 pb-7 mb-7 last:pb-0 last:mb-0 ${typeAccent[item.contentType] || "border-l-coral"}`}
+      className={`group border-l-4 pl-5 pb-7 mb-7 last:pb-0 last:mb-0 ${typeAccent[item.contentType] || "border-l-coral"}`}
     >
       <div className="flex items-center gap-2 mb-2">
         <span
