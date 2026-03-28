@@ -56,7 +56,7 @@ export default async function GuidePage({
           </time>
         </div>
 
-        <h1 className="text-3xl font-bold text-warm-black leading-tight mb-4">
+        <h1 className="font-display text-3xl font-semibold text-warm-black leading-tight mb-4">
           {item.title}
         </h1>
 

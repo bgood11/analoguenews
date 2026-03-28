@@ -100,7 +100,7 @@ export default function ExposureCalculatorPage() {
         &larr; All tools
       </Link>
 
-      <h1 className="text-2xl font-bold text-warm-black mb-1">
+      <h1 className="font-display text-2xl font-semibold text-warm-black mb-1">
         Exposure Calculator
       </h1>
       <p className="text-sm text-warm-gray mb-8">

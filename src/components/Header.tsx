@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 
 export function Header() {
@@ -55,10 +56,18 @@ function NavLink({
   href: string;
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  const isActive =
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
+
   return (
     <Link
       href={href}
-      className="relative text-sm font-semibold text-warm-gray hover:text-warm-black transition-colors after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-coral after:transition-all hover:after:w-full"
+      className={`relative text-sm font-semibold transition-colors after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:bg-coral after:transition-all ${
+        isActive
+          ? "text-warm-black after:w-full"
+          : "text-warm-gray hover:text-warm-black after:w-0 hover:after:w-full"
+      }`}
     >
       {children}
     </Link>

@@ -113,19 +113,19 @@ export default async function FilmStockPage({
 
       {/* Description */}
       <section className="mb-8">
-        <h2 className="text-lg font-bold text-warm-black mb-2">About</h2>
+        <h2 className="font-display text-lg font-semibold text-warm-black mb-2">About</h2>
         <p className="text-warm-black leading-relaxed">{stock.description}</p>
       </section>
 
       {/* Character */}
       <section className="mb-8">
-        <h2 className="text-lg font-bold text-warm-black mb-2">Character</h2>
+        <h2 className="font-display text-lg font-semibold text-warm-black mb-2">Character</h2>
         <p className="text-warm-gray leading-relaxed">{stock.character}</p>
       </section>
 
       {/* Best For */}
       <section className="mb-8">
-        <h2 className="text-lg font-bold text-warm-black mb-2">Best For</h2>
+        <h2 className="font-display text-lg font-semibold text-warm-black mb-2">Best For</h2>
         <div className="flex flex-wrap gap-2">
           {stock.bestFor.map((use) => (
             <span
@@ -141,7 +141,7 @@ export default async function FilmStockPage({
       {/* Reciprocity Data */}
       {stock.reciprocityData && stock.reciprocityData.length > 0 && (
         <section className="mb-8">
-          <h2 className="text-lg font-bold text-warm-black mb-2">
+          <h2 className="font-display text-lg font-semibold text-warm-black mb-2">
             Reciprocity Failure Compensation
           </h2>
           <p className="text-sm text-warm-gray mb-3">
