@@ -139,7 +139,10 @@ export default function ExposureCalculatorPage() {
                   : "bg-white border-warm-border text-warm-gray hover:border-warm-gray-light"
               }`}
             >
-              <div className="text-sm font-medium">{preset.name}</div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium">{preset.name}</span>
+                <span className="text-[10px] font-mono opacity-50">EV {preset.ev}</span>
+              </div>
               <div className="text-xs opacity-75">{preset.desc}</div>
             </button>
           ))}
@@ -168,10 +171,29 @@ export default function ExposureCalculatorPage() {
         </div>
       </section>
 
-      {/* Results */}
+      {/* Result Hero */}
+      <section className="bg-white border-2 border-coral rounded-lg p-6 mb-8 text-center">
+        <div className="text-xs text-warm-gray uppercase tracking-wider mb-1">
+          {selectedPreset.name} &middot; ISO {selectedIso}
+        </div>
+        <div className="flex items-center justify-center gap-3 my-2">
+          <span className="text-2xl font-mono font-semibold text-warm-black">
+            f/{selectedAperture}
+          </span>
+          <span className="text-warm-gray-light text-lg">&rarr;</span>
+          <span className="text-3xl font-mono font-bold text-coral">
+            {calculatedShutter}
+          </span>
+        </div>
+        <p className="text-xs text-warm-gray">
+          Tap a row below to change aperture
+        </p>
+      </section>
+
+      {/* All Combinations */}
       <section className="mb-8">
         <h2 className="text-sm font-semibold text-warm-black mb-3 uppercase tracking-wide">
-          Exposure Combinations
+          All Combinations
         </h2>
         <div className="bg-white border border-warm-border rounded-xl overflow-hidden">
           <table className="w-full text-sm">
@@ -192,8 +214,11 @@ export default function ExposureCalculatorPage() {
               {combinations.map((c) => (
                 <tr
                   key={c.aperture}
-                  className={`border-t border-warm-border-light ${
-                    c.aperture === selectedAperture ? "bg-coral-light" : ""
+                  onClick={() => setSelectedAperture(c.aperture)}
+                  role="button"
+                  tabIndex={0}
+                  className={`border-t border-warm-border-light cursor-pointer transition-colors hover:bg-warm-bg-alt ${
+                    c.aperture === selectedAperture ? "bg-coral-light hover:bg-coral-light" : ""
                   } ${!c.practical ? "opacity-40" : ""}`}
                 >
                   <td className="py-2 px-4 font-mono text-warm-black">

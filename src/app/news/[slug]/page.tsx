@@ -41,6 +41,21 @@ export default async function NewsArticlePage({
   const item = getNewsItem(slug);
   if (!item || item.contentType === "guide") notFound();
 
+  const allArticles = newsItems
+    .filter((n) => n.contentType !== "guide")
+    .sort(
+      (a, b) =>
+        new Date(b.publishedDate).getTime() -
+        new Date(a.publishedDate).getTime()
+    );
+  const currentIndex = allArticles.findIndex((n) => n.slug === slug);
+  const prevArticle =
+    currentIndex > 0 ? allArticles[currentIndex - 1] : null;
+  const nextArticle =
+    currentIndex < allArticles.length - 1
+      ? allArticles[currentIndex + 1]
+      : null;
+
   return (
     <>
       <ReadingProgress />
@@ -110,6 +125,42 @@ export default async function NewsArticlePage({
             </span>
           ))}
         </div>
+
+        {/* Prev/Next navigation */}
+        {(prevArticle || nextArticle) && (
+          <nav className="mt-10 pt-8 border-t-2 border-warm-border grid grid-cols-2 gap-6">
+            <div>
+              {prevArticle && (
+                <Link
+                  href={`/news/${prevArticle.slug}`}
+                  className="group block"
+                >
+                  <span className="text-[10px] text-warm-gray uppercase tracking-widest font-mono">
+                    Previous
+                  </span>
+                  <p className="font-display text-sm font-semibold text-warm-black group-hover:text-coral transition-colors mt-1 leading-snug">
+                    {prevArticle.title}
+                  </p>
+                </Link>
+              )}
+            </div>
+            <div className="text-right">
+              {nextArticle && (
+                <Link
+                  href={`/news/${nextArticle.slug}`}
+                  className="group block"
+                >
+                  <span className="text-[10px] text-warm-gray uppercase tracking-widest font-mono">
+                    Next
+                  </span>
+                  <p className="font-display text-sm font-semibold text-warm-black group-hover:text-coral transition-colors mt-1 leading-snug">
+                    {nextArticle.title}
+                  </p>
+                </Link>
+              )}
+            </div>
+          </nav>
+        )}
 
         {/* Back link */}
         <div className="mt-8 pt-6 border-t border-warm-border">

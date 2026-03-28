@@ -152,7 +152,7 @@ export default function ReciprocityPage() {
           placeholder="Enter metered time in seconds"
         />
         <div className="flex flex-wrap gap-2 mt-3">
-          {[1, 2, 4, 8, 15, 30, 60, 120, 240].map((t) => (
+          {[2, 4, 8, 15, 30, 60, 120, 240].map((t) => (
             <button
               key={t}
               onClick={() => setMeasuredTime(String(t))}
@@ -168,15 +168,39 @@ export default function ReciprocityPage() {
         </div>
       </section>
 
+      {/* No compensation needed message */}
+      {measuredSeconds > 0 && measuredSeconds <= 1 && (
+        <section className="bg-warm-bg-alt rounded-lg p-5 mb-8 text-center">
+          <p className="text-sm text-warm-gray">
+            Reciprocity failure typically begins above 1 second. No compensation needed.
+          </p>
+        </section>
+      )}
+
       {/* Result */}
-      {result && measuredSeconds > 0 && (
-        <section className="bg-white border-2 border-coral rounded-xl p-6 mb-8">
+      {result && measuredSeconds > 1 && (
+        <section className="bg-white border-2 border-coral rounded-lg p-6 mb-8">
           <div className="text-center">
-            <div className="text-sm text-warm-gray mb-1">
-              Adjusted Exposure Time
+            <div className="text-xs text-warm-gray uppercase tracking-wider mb-3">
+              Adjusted Exposure
             </div>
-            <div className="text-4xl font-bold font-mono text-coral mb-2">
-              {formatTime(result.adjustedSeconds)}
+            {/* Before → After */}
+            <div className="flex items-center justify-center gap-4 mb-3">
+              <div>
+                <div className="text-xs text-warm-gray mb-0.5">Metered</div>
+                <div className="text-2xl font-mono font-semibold text-warm-gray">
+                  {formatTime(measuredSeconds)}
+                </div>
+              </div>
+              <svg className="w-6 h-6 text-coral flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+              <div>
+                <div className="text-xs text-coral mb-0.5">Adjusted</div>
+                <div className="text-3xl font-mono font-bold text-coral">
+                  {formatTime(result.adjustedSeconds)}
+                </div>
+              </div>
             </div>
             <div className="flex items-center justify-center gap-6 text-sm text-warm-gray">
               <span>

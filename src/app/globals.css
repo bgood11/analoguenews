@@ -85,6 +85,37 @@ a, button {
   border-radius: 4px;
 }
 
+/* Article body typography */
+.prose-analog {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  max-width: 68ch;
+}
+
+.prose-analog > p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 0.85;
+  float: left;
+  margin-right: 0.12em;
+  margin-top: 0.05em;
+  color: var(--color-coral);
+}
+
+/* Blockquotes */
+.prose-analog blockquote {
+  margin: 2em 0;
+  padding: 1.25em 1.5em;
+  background: var(--color-coral-light);
+  border-left: 4px solid var(--color-coral);
+  border-radius: 0 6px 6px 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;
