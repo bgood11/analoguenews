@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { filmStocks, getFilmStock } from "@/data/film-stocks";
 import { JsonLd } from "@/components/JsonLd";
+import { ReciprocityCurveSingle } from "@/components/ReciprocityCurve";
 import type { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -155,9 +156,8 @@ export default async function FilmStockPage({
           <h2 className="font-display text-lg font-semibold text-warm-black mb-2">
             Reciprocity Failure Compensation
           </h2>
-          <p className="text-sm text-warm-gray mb-3">
-            For long exposures, increase the metered time as shown below.
-            Use our{" "}
+          <p className="text-sm text-warm-gray mb-4">
+            For long exposures, increase the metered time as shown below. Use our{" "}
             <Link
               href="/tools/reciprocity"
               className="text-coral hover:text-coral-dark"
@@ -166,7 +166,14 @@ export default async function FilmStockPage({
             </Link>{" "}
             for precise values.
           </p>
-          <div className="bg-white border border-warm-border rounded-xl overflow-hidden">
+          {/* Animated curve */}
+          <div className="bg-white border border-warm-border rounded-lg p-4 mb-4">
+            <ReciprocityCurveSingle
+              data={stock.reciprocityData}
+              stockName={`${stock.manufacturer} ${stock.name}`}
+            />
+          </div>
+          <div className="bg-white border border-warm-border rounded-lg overflow-hidden">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-warm-bg-alt">

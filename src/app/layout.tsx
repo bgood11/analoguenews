@@ -49,7 +49,15 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${lora.variable} ${sourceSans.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme:dark)').matches)){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-1">{children}</main>

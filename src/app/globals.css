@@ -127,9 +127,56 @@ a, button {
   transform: none;
 }
 
+/* Film strip animation */
+@keyframes filmstrip {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-filmstrip {
+  animation: filmstrip linear infinite;
+}
+
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;
+}
+
+/* Dark mode overrides */
+[data-theme="dark"] {
+  --color-warm-black: #F5F3F0;
+  --color-warm-bg: #141210;
+  --color-warm-bg-alt: #1C1A17;
+  --color-warm-bg-dark: #0E0D0B;
+  --color-coral-light: #2A1510;
+  --color-amber-light: #2A1E10;
+  --color-warm-gray: #9A958D;
+  --color-warm-gray-light: #5A554E;
+  --color-warm-border: #2E2926;
+  --color-warm-border-light: #242120;
+}
+
+[data-theme="dark"] body {
+  color: #F5F3F0;
+  background: #141210;
+}
+
+[data-theme="dark"] body::before {
+  opacity: 0.04;
+  mix-blend-mode: soft-light;
+}
+
+[data-theme="dark"] body::after {
+  opacity: 0.02;
+  mix-blend-mode: soft-light;
+}
+
+[data-theme="dark"] .bg-white {
+  background-color: #1C1A17;
+}
+
+[data-theme="dark"] ::selection {
+  background-color: #E8634A;
+  color: #141210;
 }
 
 /* Scrollbar styling */

@@ -5,6 +5,7 @@ import { ContentFilter } from "@/components/ContentFilter";
 import { DarkNewsletterCTA } from "@/components/DarkNewsletterCTA";
 import { RevealWrapper } from "@/components/RevealWrapper";
 import { TodayInHistory } from "@/components/TodayInHistory";
+import { FilmStripHero } from "@/components/FilmStripHero";
 import Link from "next/link";
 
 export default async function HomePage({
@@ -38,8 +39,7 @@ export default async function HomePage({
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-warm-black text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-warm-black via-warm-black to-coral/20" />
+      <FilmStripHero palette="warm">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 items-end">
             <div>
@@ -137,9 +137,7 @@ export default async function HomePage({
           </div>
         </div>
 
-        {/* Film strip decoration */}
-        <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-coral via-amber to-coral opacity-80" />
-      </section>
+      </FilmStripHero>
 
       {/* Today in Film History */}
       <TodayInHistory />
