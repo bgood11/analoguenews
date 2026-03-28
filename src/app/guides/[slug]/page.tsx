@@ -34,49 +34,79 @@ export default async function GuidePage({
   if (!item || item.contentType !== "guide") notFound();
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
-      <Link
-        href="/guides"
-        className="text-sm text-warm-gray hover:text-coral transition-colors mb-6 inline-block"
-      >
-        &larr; All guides
-      </Link>
+    <>
+      {/* Dark hero */}
+      <section className="bg-warm-black text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-warm-black via-warm-black to-coral/10" />
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 py-10">
+          <Link
+            href="/guides"
+            className="text-sm text-white/40 hover:text-coral transition-colors mb-4 inline-block"
+          >
+            &larr; All guides
+          </Link>
 
-      <article>
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-green-50 text-green-700">
-            Guide
-          </span>
-          <time className="text-xs text-warm-gray font-mono">
-            {new Date(item.publishedDate).toLocaleDateString("en-GB", {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            })}
-          </time>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-sm bg-coral text-white">
+              Guide
+            </span>
+            <time className="text-xs text-white/40 font-mono">
+              {new Date(item.publishedDate).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+            </time>
+          </div>
+
+          <h1 className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold text-white leading-tight">
+            {item.title}
+          </h1>
         </div>
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-coral via-amber to-coral opacity-60" />
+      </section>
 
-        <h1 className="font-display text-3xl font-semibold text-warm-black leading-tight mb-4">
-          {item.title}
-        </h1>
-
-        <p className="text-lg text-warm-gray leading-relaxed mb-8 border-l-4 border-green-500 pl-4">
+      {/* Article body */}
+      <article className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+        <p className="text-lg text-warm-gray leading-relaxed mb-8 pl-5 border-l-3 border-coral italic font-display">
           {item.summary}
         </p>
 
         <div className="prose-analog">{renderMarkdown(item.body)}</div>
 
-        <div className="flex flex-wrap gap-2 mt-8 pt-6 border-t border-warm-border">
+        <div className="flex flex-wrap gap-2 mt-10 pt-6 border-t border-warm-border">
           {item.tags.map((tag) => (
             <span
               key={tag}
-              className="text-xs text-warm-gray border border-warm-border rounded-full px-3 py-1"
+              className="text-[11px] text-warm-gray border border-warm-border rounded-sm px-3 py-1 font-mono"
             >
               {tag}
             </span>
           ))}
         </div>
+
+        <div className="mt-8 pt-6 border-t border-warm-border">
+          <Link
+            href="/guides"
+            className="text-sm text-coral hover:text-coral-dark font-semibold transition-colors group inline-flex items-center"
+          >
+            <svg
+              className="mr-1 w-4 h-4 group-hover:-translate-x-1 transition-transform"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M7 16l-4-4m0 0l4-4m-4 4h18"
+              />
+            </svg>
+            All guides
+          </Link>
+        </div>
       </article>
-    </div>
+    </>
   );
 }
